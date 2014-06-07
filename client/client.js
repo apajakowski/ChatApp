@@ -13,17 +13,18 @@ Template.input.events = {
         var name = Meteor.user().profile.name;
       else
         var name = 'Anonymous';
-      var message = document.getElementById('message');
-
-      if (message.value != '') {
+        var message = document.getElementById('message');
+      if (message.value != '' && name != 'Anonymous') {
         Messages.insert({
           name: name,
           message: message.value,
           time: Date.now(),
         });
-
         document.getElementById('message').value = '';
         message.value = '';
+      }
+      if (message.value != '' && name == 'Anonymous') {
+        alert('Login to continue!!');
       }
     }
   }
